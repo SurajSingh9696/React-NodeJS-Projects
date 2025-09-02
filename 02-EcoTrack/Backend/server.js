@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(cors(
     {
-        origin: 'https://eco-track-internship-project.netlify.app',
+        origin: 'http://127.0.0.1:3000/02-EcoTrack/Frontend/index.html',
         methods: ['GET', 'POST', 'PUT', 'DELETE'],
         credentials: true
     }
