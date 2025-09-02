@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTrack - Sustainable Living</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Auth Modal -->
+        <div id="auth-modal" class="modal">
+            <div class="modal-content">
+                <div class="auth-tabs">
+                    <button class="tab-btn active" data-tab="login">Login</button>
+                    <button class="tab-btn" data-tab="register">Register</button>
+                </div>
+                
+                <div id="login-tab" class="auth-tab active">
+                    <h2>Welcome Back</h2>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <input type="email" id="login-email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="login-password" placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                </div>
+                
+                <div id="register-tab" class="auth-tab">
+                    <h2>Join EcoTrack</h2>
+                    <form id="register-form">
+                        <div class="form-group">
+                            <input type="text" id="register-username" placeholder="Username" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="register-email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="register-password" placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Create Account</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main App -->
+        <div id="main-app" class="hidden">
+            <!-- Header -->
+            <header class="app-header">
+                <div class="logo">
+                    <span class="logo-icon">🌿</span>
+                    <span>EcoTrack</span>
+                </div>
+                <div class="header-actions">
+                    <span class="user-name" id="username-display">User</span>
+                    <button class="btn btn-outline" id="logout-btn">Logout</button>
+                </div>
+            </header>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Stats Overview -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">🌍</div>
+                        <div class="stat-value" id="co2-value">0 kg</div>
+                        <div class="stat-label">CO₂ Saved</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💧</div>
+                        <div class="stat-value" id="water-value">0 L</div>
+                        <div class="stat-label">Water Saved</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🗑️</div>
+                        <div class="stat-value" id="waste-value">0 kg</div>
+                        <div class="stat-label">Waste Reduced</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⚡</div>
+                        <div class="stat-value" id="energy-value">0 kWh</div>
+                        <div class="stat-label">Energy Saved</div>
+                    </div>
+                    <div class="stat-card highlight">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-value" id="points-value">0</div>
+                        <div class="stat-label">Eco Points</div>
+                    </div>
+                </div>
+
+                <!-- Quick Activities -->
+                <div class="section">
+                    <h2>Quick Actions</h2>
+                    <div class="activity-grid">
+                        <button class="activity-btn" data-activity="reusable-bottle">
+                            <span class="activity-icon">💧</span>
+                            <span>Reusable Bottle</span>
+                            <span class="activity-points">+5</span>
+                        </button>
+                        <button class="activity-btn" data-activity="walked">
+                            <span class="activity-icon">🚶</span>
+                            <span>Walked</span>
+                            <span class="activity-points">+10</span>
+                        </button>
+                        <button class="activity-btn" data-activity="recycled">
+                            <span class="activity-icon">♻️</span>
+                            <span>Recycled</span>
+                            <span class="activity-points">+7</span>
+                        </button>
+                        <button class="activity-btn" data-activity="led-bulb">
+                            <span class="activity-icon">💡</span>
+                            <span>LED Bulb</span>
+                            <span class="activity-points">+8</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Impact Summary -->
+                <div class="section impact-summary">
+                    <h2>Your Environmental Impact</h2>
+                    <div class="impact-grid">
+                        <div class="impact-item">
+                            <span class="impact-icon">💧</span>
+                            <div>
+                                <div class="impact-value" id="water-glasses">0</div>
+                                <div class="impact-label">Glasses of water saved</div>
+                            </div>
+                        </div>
+                        <div class="impact-item">
+                            <span class="impact-icon">🌳</span>
+                            <div>
+                                <div class="impact-value" id="trees-planted">0</div>
+                                <div class="impact-label">Trees equivalent</div>
+                            </div>
+                        </div>
+                        <div class="impact-item">
+                            <span class="impact-icon">🚗</span>
+                            <div>
+                                <div class="impact-value" id="car-miles">0</div>
+                                <div class="impact-label">Car miles offset</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activities -->
+                <div class="section">
+                    <h2>Recent Activities</h2>
+                    <div id="activities-list" class="activities-list">
+                        <div class="empty-state">No activities yet. Start tracking your eco-friendly habits!</div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
