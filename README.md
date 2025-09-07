@@ -3,6 +3,6 @@
 
 ## TextStack Used
 
-### Frontend:-- #### ReactJS
-### Backend:-- #### NodeJS
-### Database:-- #### MongoDB , MongoDB Atlas
+### Frontend:--  ReactJS
+### Backend:--  NodeJS
+### Database:--  MongoDB , MongoDB Atlas
