@@ -118,7 +118,7 @@ function App() {
     
     const downloadLink = document.createElement('a');
     downloadLink.href = url;
-    downloadLink.download = `qrcode-${activeTab === 'text' ? 'text' : 'image'}.svg`;
+    downloadLink.download = `qrcode-${activeTab === 'text' ? 'text' : 'image'}.png`;
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
