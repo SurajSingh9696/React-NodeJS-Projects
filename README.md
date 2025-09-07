@@ -13,7 +13,7 @@
 ### CompressToPdf:-- A full Documentation problems Solution.
 ### EcoTrack:-- An Eco Activity Tracking WebApp.
 ### TransForma:-- 
-### QuickQR:-- 
+### QuickQR:-- A Text and Image to QrCode generator WebApp
 ### Imagine:--
 ### MailPilot AI:--
 ### 
