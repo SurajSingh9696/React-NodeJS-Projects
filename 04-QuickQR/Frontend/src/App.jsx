@@ -14,6 +14,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [uploadedImageUrl, setUploadedImageUrl] = useState('');
   const fileInputRef = useRef(null);
+  const qrCodeRef = useRef(null);
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -111,20 +112,38 @@ function App() {
       return;
     }
 
-    const svg = document.getElementById('qrcode-svg');
-    const svgData = new XMLSerializer().serializeToString(svg);
-    const blob = new Blob([svgData], { type: 'image/svg+xml' });
-    const url = URL.createObjectURL(blob);
+    // Create a canvas to convert SVG to PNG
+    const svgElement = document.getElementById('qrcode-svg');
+    const svgData = new XMLSerializer().serializeToString(svgElement);
+    const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+    const svgUrl = URL.createObjectURL(svgBlob);
     
-    const downloadLink = document.createElement('a');
-    downloadLink.href = url;
-    downloadLink.download = `qrcode-${activeTab === 'text' ? 'text' : 'image'}.png`;
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-    document.body.removeChild(downloadLink);
-    URL.revokeObjectURL(url);
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      
+      canvas.toBlob((blob) => {
+        const url = URL.createObjectURL(blob);
+        
+        const downloadLink = document.createElement('a');
+        downloadLink.href = url;
+        downloadLink.download = `qrcode-${activeTab === 'text' ? 'text' : 'image'}.png`;
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+        URL.revokeObjectURL(url);
+        URL.revokeObjectURL(svgUrl);
+        
+        toast.success('QR code downloaded successfully!');
+      });
+    };
     
-    toast.success('QR code downloaded successfully!');
+    img.src = svgUrl;
   };
 
   const shareQRCode = async () => {
@@ -135,8 +154,8 @@ function App() {
 
     try {
       // Convert SVG to data URL
-      const svg = document.getElementById('qrcode-svg');
-      const svgData = new XMLSerializer().serializeToString(svg);
+      const svgElement = document.getElementById('qrcode-svg');
+      const svgData = new XMLSerializer().serializeToString(svgElement);
       const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
       const svgUrl = URL.createObjectURL(svgBlob);
       
@@ -175,6 +194,8 @@ function App() {
             document.body.removeChild(link);
             toast.success('QR code image downloaded for sharing!');
           }
+          
+          URL.revokeObjectURL(svgUrl);
         });
       };
       img.src = svgUrl;
@@ -322,6 +343,7 @@ function App() {
                     size={200}
                     level="H"
                     includeMargin
+                    ref={qrCodeRef}
                   />
                   <div className="qr-actions">
                     <button 
