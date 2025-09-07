@@ -11,7 +11,7 @@ function App() {
       formData.append("imageName", watch("imageName"));
       formData.append("image", watch("image")[0]);
 
-      const res = await Axios.post("http://localhost:5555/imageUpload", formData, {
+      const res = await Axios.post("https://quickqr-backend-rsml.onrender.com/imageUpload", formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
