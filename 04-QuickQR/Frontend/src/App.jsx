@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { QRCodeSVG } from 'qrcode.react';
 import { toast, Toaster } from 'react-hot-toast';
-import './App.css';
+import './App1.css';
 
 function App() {
   const [activeTab, setActiveTab] = useState('text');
